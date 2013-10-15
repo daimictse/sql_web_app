@@ -1,0 +1,9 @@
+#!/home/user/src/sql_lesson/env/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'howdoi==1.1.4','console_scripts','howdoi'
+__requires__ = 'howdoi==1.1.4'
+import sys
+from pkg_resources import load_entry_point
+
+sys.exit(
+   load_entry_point('howdoi==1.1.4', 'console_scripts', 'howdoi')()
+)

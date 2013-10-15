@@ -1,0 +1,20 @@
+<html>
+<body>
+<h1>Student: {{last_name}}, {{first_name}}</h1>
+{% if github: %}
+<h2>Github: {{github}}</h2>
+{% endif %}
+{% if grades %}
+<h2>Projects:</h2>
+<ul>
+    {% for grade in grades %}
+    <li><a href="http://localhost:5000/project?project={{grade[0]}}">{{grade[0]}}</a>: {{grade[1]}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% if first_name == "Christian" and last_name == "Fernandez": %}
+<p>This student has shown extreme recalcitrance and has generally proved to be unreliable.</p>
+<p>It is my recommendation that they be put on double-secret probation for the remainder of the course.</p>
+{% endif %}
+</body>
+</html>
