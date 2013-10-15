@@ -37,7 +37,8 @@ def project_grades():
         grades = []
         for row in rows:
             grades.append((row[0], row[1], row[2])) #first name, last name, and grade
-        html = render_template("project_grades.html", grades=grades)
+        html = render_template("project_grades.html", project = project,
+                                                        grades=grades)
     return html
 
 @app.route("/new_student")
@@ -71,7 +72,7 @@ def make_new_grade():
     project = request.args.get("project")
     grade = request.args.get("grade")
     hackbright_app.make_new_grade(github, project, grade)
-    return project_grades()
+    return redirect("/project?project=%s"%project)
 
 if __name__ == "__main__":
     app.run(debug=True)
