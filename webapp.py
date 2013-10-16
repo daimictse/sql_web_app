@@ -41,36 +41,30 @@ def project_grades():
                                                         grades=grades)
     return html
 
-@app.route("/new_student")
+@app.route("/new_student", methods=["POST"])
 def make_new_student():
     hackbright_app.connect_to_db()
-    first_name = request.args.get("first_name")
-    last_name = request.args.get("last_name")
-    student_github = request.args.get("github")
+    first_name = request.form.get("first_name")
+    last_name = request.form.get("last_name")
+    student_github = request.form.get("github")
     hackbright_app.make_new_student(first_name, last_name, student_github)
-    html = render_template("student_info.html", first_name=first_name,
-                                                last_name=last_name,
-                                                github= student_github)
-    return html
+    return redirect("/student_name?first_name=%s&last_name=%s"%(first_name,last_name))
 
-@app.route("/new_project")
+@app.route("/new_project", methods=["POST"])
 def make_new_project():
     hackbright_app.connect_to_db()
-    project = request.args.get("project")
-    description = request.args.get("description")
-    max_grade = request.args.get("max_grade")
+    project = request.form.get("project")
+    description = request.form.get("description")
+    max_grade = request.form.get("max_grade")
     hackbright_app.make_new_project(project, description, max_grade)
-    html = render_template("project_info.html", project=project,
-                                                description=description,
-                                                max_grade=max_grade)
-    return html
+    return redirect("/project?project=%s"%project)
 
-@app.route("/new_grade")
+@app.route("/new_grade", methods=["POST"])
 def make_new_grade():
     hackbright_app.connect_to_db()
-    github = request.args.get("github")
-    project = request.args.get("project")
-    grade = request.args.get("grade")
+    github = request.form.get("github")
+    project = request.form.get("project")
+    grade = request.form.get("grade")
     hackbright_app.make_new_grade(github, project, grade)
     return redirect("/project?project=%s"%project)
 

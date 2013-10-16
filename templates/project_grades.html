@@ -1,4 +1,7 @@
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
 <body>
 <h1>Project: {{project}}</h1>
 {% if grades: %}
@@ -11,9 +14,11 @@
 {% endif %}
 <br>
 <br>
-<div>
-<form action="/new_grade">
+<div class="boxes">
+<form action="/new_grade" method="POST">
     <h3>Make a new grade:</h3>
+    <label for="project"></label>
+    <input type="hidden" name="project" value="{{project}}"/>
     <label for="github">Enter student's github handle:</label>
     <input type="text" name="github" /><br>
     <label for="grade">Enter student's grade for this project:</label>
